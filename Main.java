@@ -2,7 +2,7 @@
 
 public class Main {
     public static void main(String[] args) {
-        ContaBancaria conta = null;
+        ContaBancaria conta = null; //objeto conta bancária criado como null
         int opcao;
 
         do{
@@ -25,7 +25,29 @@ public class Main {
 
                     //criando o objeto cliente e objeto data
                     Cliente cliente = new Cliente(nome, cpf, new Data(dia, mes, ano));
+
+                    //recebendo saldo inicial e tipo de conta
+                    double saldo = Teclado.leDouble("Informe o saldo inicial: ");
+                    char tipo = Teclado.leChar("Escolha o tipo de conta, Corrente(C), Poupança(P) ou Investimento(I): ");
+
+                    if (tipo == 'C') {
+                        double limite = Teclado.leDouble("Informe o limite:");
+                        conta = new ContaCorrente(cliente, saldo, null, null, null, limite);
+                    } else if (tipo == 'P') {
+                        int diaAniversario = Teclado.leInt("Informe o dia aniversário: ");
+                        conta = new ContaPoupanca(cliente, saldo, null, null, null, diaAniversario);
+                    } else if (tipo == 'I') {
+                        System.out.println("Data de vencimento: ");
+                        int diaVencimento = Teclado.leInt("Dia: ");
+                        int mesVencimento = Teclado.leInt("Mês: ");
+                        int anoVencimento = Teclado.leInt("Ano: ");
+                        Data dtVencimento = new Data(diaVencimento, mesVencimento, anoVencimento);
+                        conta = new ContaInvestimento(cliente, saldo, null, null, null, dtVencimento);
+                    }
                     break;
+
+                case 2: 
+                //**CONTINUAR A PARTIR DO CASO 2 (DEPOSITO) PRECISA SER FEITO METODOS NAS CLASSES PARA CONTAR DEPOSITOS E ADD O DINHEIRO **/
             
                 default:
                     break;

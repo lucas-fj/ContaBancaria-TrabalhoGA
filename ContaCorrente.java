@@ -23,10 +23,10 @@ public class ContaCorrente extends ContaBancaria {
 
     //método movimenta (faz apenas as operações de depósito e saque verificando se o saldo está disponível e o limite ok)
     public void movimenta(Operacao op){
-        if (op.getTipo() == 'D' || op.getTipo() == 'd') {
+        if (op.getTipo() == 'D' || op.getTipo() == 'd') { //depósito
            saldo += op.getValor();
            System.out.println("Novo saldo: R$" + saldo);
-        } else if(op.getTipo() == 'S' || op.getTipo() == 's'){
+        } else if(op.getTipo() == 'S' || op.getTipo() == 's'){ //saque
             if (saldo >= op.getValor() && limiteCredito >= op.getValor()) {
                 saldo -= op.getValor();
                 System.out.println("Novo saldo: R$" + saldo);
