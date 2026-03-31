@@ -5,9 +5,8 @@ public class ContaInvestimento extends ContaBancaria {
     private Data dtVencimento;
 
     //construtor
-    public ContaInvestimento(Cliente cliente, double saldoInicial, Movimentacao depositos, Movimentacao saques,
-            Movimentacao juros, Data dtVencimento) {
-        super(cliente, saldoInicial, depositos, saques, juros);
+    public ContaInvestimento(Cliente cliente, double saldoInicial, Data dtVencimento) {
+        super(cliente, saldoInicial);
         this.dtVencimento = dtVencimento;
     }
 
@@ -23,12 +22,10 @@ public class ContaInvestimento extends ContaBancaria {
     //métodos
     @Override
      public void movimenta(Operacao op){
-        if (op.getTipo() == 'D' || op.getTipo() == 'd') {
-           saldo += op.getValor();
-           System.out.println("Novo saldo: R$" + saldo);
-        } else if (op.getTipo() == 'J' || op.getTipo() == 'j') {
-            double valorJuros = saldo * (op.getValor() / 100);
-            saldo += valorJuros;
+        if (op.getTipo() == 'D') { //depósito
+            saldo += op.getValor();
+            depositos.registrarMovimentacao(op.getValor());
+            System.out.println("Novo saldo: R$" + saldo);
         }
     }
 }

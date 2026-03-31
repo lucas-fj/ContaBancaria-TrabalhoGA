@@ -28,5 +28,10 @@ public class Movimentacao {
     }
 
 
-     //*CRIAR MAIS METODOS QUANDO NECESSARIO */
+     //métodos
+     //método para registrar quantidade de depósitos
+     public void registrarMovimentacao(double valor){
+        quantidade++;
+        valorTotal += valor;
+     }
 }

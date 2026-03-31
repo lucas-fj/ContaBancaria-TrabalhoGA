@@ -44,16 +44,30 @@ public  abstract class ContaBancaria {
     }
 
     //construtor 
-    public ContaBancaria(Cliente cliente, double saldoInicial, Movimentacao depositos, Movimentacao saques,
-            Movimentacao juros) {
+    public ContaBancaria(Cliente cliente, double saldoInicial) {
         this.cliente = cliente;
         this.saldoInicial = saldoInicial;
-        this.depositos = depositos;
-        this.saques = saques;
-        this.juros = juros;
-    }
+        this.saldo = saldoInicial;
 
+        this.depositos = new Movimentacao(0, 0);
+        this.saques = new Movimentacao(0, 0);
+        this.juros = new Movimentacao(0, 0);
+    }
     //métodos
     public abstract void movimenta(Operacao op);    
+
+    //método para mostrar extrato
+    public void extrato(){
+        //dados cliente e conta
+        System.out.println("\n--- EXTRATO ---");
+        System.out.println("Cliente: " + cliente.getNome());
+        System.out.println("CPF: " + cliente.getCpf());
+        System.out.println("Nascimento: " + cliente.getDtNascimento());
+        System.out.println("Saldo inicial: R$" + saldoInicial);
+        System.out.println("Saldo atual: R$" + saldo);
+
+        //movimentações
+        System.out.println("Depósitos: " + depositos.getQuantidade() + " || " + "Total: R$" + depositos.getValorTotal());
+    }
     
 }

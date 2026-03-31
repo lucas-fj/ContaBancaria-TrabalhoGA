@@ -32,26 +32,40 @@ public class Main {
 
                     if (tipo == 'C') {
                         double limite = Teclado.leDouble("Informe o limite:");
-                        conta = new ContaCorrente(cliente, saldo, null, null, null, limite);
+                        conta = new ContaCorrente(cliente, saldo, limite);
                     } else if (tipo == 'P') {
                         int diaAniversario = Teclado.leInt("Informe o dia aniversário: ");
-                        conta = new ContaPoupanca(cliente, saldo, null, null, null, diaAniversario);
+                        conta = new ContaPoupanca(cliente, saldo, diaAniversario);
                     } else if (tipo == 'I') {
                         System.out.println("Data de vencimento: ");
                         int diaVencimento = Teclado.leInt("Dia: ");
                         int mesVencimento = Teclado.leInt("Mês: ");
                         int anoVencimento = Teclado.leInt("Ano: ");
                         Data dtVencimento = new Data(diaVencimento, mesVencimento, anoVencimento);
-                        conta = new ContaInvestimento(cliente, saldo, null, null, null, dtVencimento);
+                        conta = new ContaInvestimento(cliente, saldo, dtVencimento);
                     }
                     break;
 
-                case 2: 
-                //**CONTINUAR A PARTIR DO CASO 2 (DEPOSITO) PRECISA SER FEITO METODOS NAS CLASSES PARA CONTAR DEPOSITOS E ADD O DINHEIRO **/
-            
+                case 2:
+                    //if para verificar se a conta ja foi criada
+                    if (conta == null) {
+                        break;
+                    }
+
+                    double valorDep = Teclado.leDouble("Informe o valor do depósito: ");
+                    while (valorDep < 0 ) {
+                        valorDep = Teclado.leDouble("Valor inválido. Digite o valor novamente: ");
+                    }
+
+                    Operacao op = new Operacao('D', valorDep);//criando o objeto da operação depósito
+                    conta.movimenta(op);
+                    break;
+
+                case 3:
+                    //**CONTINUAR A PARTIR DO CASO 3 (SAQUE) */
                 default:
                     break;
-            }
-        }
+            } 
+        }while (opcao !=0);
     }
 }

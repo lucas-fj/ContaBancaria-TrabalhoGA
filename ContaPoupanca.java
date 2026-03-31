@@ -6,9 +6,8 @@ public class ContaPoupanca extends ContaBancaria{
     private int diaAniversario;
 
     //construtor
-    public ContaPoupanca(Cliente cliente, double saldoInicial, Movimentacao depositos, Movimentacao saques,
-            Movimentacao juros, int diaAniversario) {
-        super(cliente, saldoInicial, depositos, saques, juros);
+    public ContaPoupanca(Cliente cliente, double saldoInicial, int diaAniversario) {
+        super(cliente, saldoInicial);
         this.diaAniversario = diaAniversario;
 
         
@@ -25,19 +24,10 @@ public class ContaPoupanca extends ContaBancaria{
 
     //métodos
     public void movimenta(Operacao op){
-        if (op.getTipo() == 'D' || op.getTipo() == 'd') { //depósito
-           saldo += op.getValor();
-           System.out.println("Novo saldo: R$" + saldo);
-        } else if(op.getTipo() == 'S' || op.getTipo() == 's'){ //saque
-            if (saldo >= op.getValor()) {
-                saldo -= op.getValor();
-                System.out.println("Novo saldo: R$" + saldo);
-            } else{
-                System.out.println("Saldo insuficiente.");
-                System.out.println("Saldo: R$" + saldo);
-            }
-        } else{
-            System.out.println("Operação não permitida para Conta Corrente.");
+         if (op.getTipo() == 'D') { //depósito 
+            saldo += op.getValor();
+            depositos.registrarMovimentacao(op.getValor());
+            System.out.println("Novo saldo: R$" + saldo);
         }
     }
 }
