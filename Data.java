@@ -38,6 +38,6 @@ public class Data {
     //método toString para formatar e mostrar a data
     @Override
     public String toString() {
-        return "Data [dia=" + dia + ", mes=" + mes + ", ano=" + ano + "]";
+        return dia + "/" + mes + "/" + ano;
     }
 }
