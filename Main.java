@@ -61,11 +61,20 @@ public class Main {
                     conta.movimenta(op);
                     break;
 
-                case 3:
-                    //**CONTINUAR A PARTIR DO CASO 3 (SAQUE) */
-                default:
-                    break;
-            } 
-        }while (opcao !=0);
+              case 3:
+    if (conta == null) { //if para saque
+        break;
+    }
+
+    double valorSaq = Teclado.leDouble("Informe o valor do saque: ");
+
+    while (valorSaq <= 0) {
+        valorSaq = Teclado.leDouble("Valor inválido. Digite novamente: ");
+    }
+
+    Operacao op = new Operacao('S', valorSaq);
+    conta.movimenta(op);
+    break;
+       
     }
 }
