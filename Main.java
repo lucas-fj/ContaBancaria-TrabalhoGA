@@ -9,6 +9,7 @@ public class Main {
             opcao = Teclado.leInt("\n1- Abrir conta.\n2- Realizar depósito.\n3- Realizar saque.\n4- Aplicar juros.\n5- Extrato.\n6- Integrantes.\n7-Sair.");
             
             switch (opcao) {
+                //criando a conta
                 case 1:
                     //if para verificar se a conta ja foi criada (caso ja tenha sido opção 1 é bloqueada)
                     if (conta != null) {
@@ -30,13 +31,13 @@ public class Main {
                     double saldo = Teclado.leDouble("Informe o saldo inicial: ");
                     char tipo = Teclado.leChar("Escolha o tipo de conta, Corrente(C), Poupança(P) ou Investimento(I): ");
 
-                    if (tipo == 'C') {
+                    if (tipo == 'C' || tipo == 'c') {
                         double limite = Teclado.leDouble("Informe o limite:");
                         conta = new ContaCorrente(cliente, saldo, limite);
-                    } else if (tipo == 'P') {
+                    } else if (tipo == 'P' || tipo == 'p') {
                         int diaAniversario = Teclado.leInt("Informe o dia aniversário: ");
                         conta = new ContaPoupanca(cliente, saldo, diaAniversario);
-                    } else if (tipo == 'I') {
+                    } else if (tipo == 'I' || tipo == 'i') {
                         System.out.println("Data de vencimento: ");
                         int diaVencimento = Teclado.leInt("Dia: ");
                         int mesVencimento = Teclado.leInt("Mês: ");
@@ -45,7 +46,8 @@ public class Main {
                         conta = new ContaInvestimento(cliente, saldo, dtVencimento);
                     }
                     break;
-
+                
+                //realizando deposito
                 case 2:
                     //if para verificar se a conta ja foi criada
                     if (conta == null) {
@@ -57,24 +59,38 @@ public class Main {
                         valorDep = Teclado.leDouble("Valor inválido. Digite o valor novamente: ");
                     }
 
-                    Operacao op = new Operacao('D', valorDep);//criando o objeto da operação depósito
-                    conta.movimenta(op);
+                    Operacao opDep = new Operacao('D', valorDep);//criando o objeto da operação depósito
+                    conta.movimenta(opDep);
                     break;
 
-              case 3:
-    if (conta == null) { //if para saque
-        break;
-    }
+                //realizando saque
+                case 3:
+                    //if para verificar se a conta ja foi criada
+                    if (conta == null) {
+                        break;
+                    }
 
-    double valorSaq = Teclado.leDouble("Informe o valor do saque: ");
+                    if (conta instanceof ContaInvestimento) {
+                        System.out.println("Operação indisponível para a conta Investimento !");
+                        break;
+                    }
 
-    while (valorSaq <= 0) {
-        valorSaq = Teclado.leDouble("Valor inválido. Digite novamente: ");
-    }
+                    double valorSaq = Teclado.leDouble("Informe o valor do saque: ");
+                    while (valorSaq <= 0) {
+                        valorSaq = Teclado.leDouble("Valor inválido. Digite novamente: ");
+                    }
 
-    Operacao op = new Operacao('S', valorSaq);
-    conta.movimenta(op);
-    break;
-       
+                    Operacao opSaq = new Operacao('S', valorSaq);
+                    conta.movimenta(opSaq);
+                    break;
+
+                //*CONTINUAR CASE 4 (JUROS) *//
+                
+                //mostrando o extrato da conta
+                case 5: 
+                    conta.extrato();
+                    break;
+            }
+        } while (opcao != 7);
     }
 }

@@ -23,18 +23,18 @@ public class ContaCorrente extends ContaBancaria {
     //método movimenta (faz apenas as operações de depósito e saque verificando se o saldo está disponível e o limite ok)
     public void movimenta(Operacao op){
         if (op.getTipo() == 'D') { //depósito  
-        saldo += valor;
+        saldo += op.getValor();
 
         // registra depósito
         depositos.setQuantidade(depositos.getQuantidade() + 1);
-        depositos.setValorTotal(depositos.getValorTotal() + valor);
+        depositos.setValorTotal(depositos.getValorTotal() + op.getValor());
 
         System.out.printf("Depósito realizado! Novo saldo: R$ %.2f\n", saldo);
-    }
-    else if (op.getTipo() == 'S') {//saque
+        
+    } else if (op.getTipo() == 'S') {//saque
 
         // verificar saldo
-        if (valor > saldo) {
+        if (op.getValor() > saldo || op.getValor() > limiteCredito) {
             System.out.println("Saldo insuficiente!");
             return;
         }
@@ -42,7 +42,7 @@ public class ContaCorrente extends ContaBancaria {
         int[] notas = {100, 50, 20, 10, 5, 2};
         int[] qtdNotas = new int[notas.length];
 
-        double restante = valor;
+        double restante = op.getValor();
 
         for (int i = 0; i < notas.length; i++) {
             qtdNotas[i] = (int) (restante / notas[i]);
@@ -64,15 +64,14 @@ public class ContaCorrente extends ContaBancaria {
         }
 
         // atualizar saldo
-        saldo -= valor;
+        saldo -= op.getValor();
 
         // registrar saque
         saques.setQuantidade(saques.getQuantidade() + 1);
-        saques.setValorTotal(saques.getValorTotal() + valor);
+        saques.setValorTotal(saques.getValorTotal() + op.getValor());
 
         System.out.printf("Saque realizado! Novo saldo: R$ %.2f\n", saldo);
     }
 
         }
     }
-}
