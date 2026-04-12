@@ -25,7 +25,7 @@ public class ContaInvestimento extends ContaBancaria {
         if (op.getTipo() == 'D') { //depósito
             saldo += op.getValor();
             depositos.registrarMovimentacao(op.getValor());
-            System.out.println("Novo saldo: R$" + saldo);
+            System.out.printf("Depósito realizado! Novo saldo: R$ %.2f\n", saldo);
 
         } else if (op.getTipo() == 'S') {//saque
 
@@ -63,8 +63,7 @@ public class ContaInvestimento extends ContaBancaria {
             saldo -= op.getValor();
 
             // registrar saque
-            saques.setQuantidade(saques.getQuantidade() + 1);
-            saques.setValorTotal(saques.getValorTotal() + op.getValor());
+            saques.registrarMovimentacao(op.getValor());
 
             System.out.printf("Saque realizado! Novo saldo: R$ %.2f\n", saldo);
         }

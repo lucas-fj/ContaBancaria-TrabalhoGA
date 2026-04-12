@@ -6,6 +6,7 @@ public class Main {
         int opcao;
 
         do{
+            System.out.print("\033\143");//comando para limpar a tela sempre que realizar uma das opções
             opcao = Teclado.leInt("\n1- Abrir conta.\n2- Realizar depósito.\n3- Realizar saque.\n4- Aplicar juros.\n5- Extrato.\n6- Integrantes.\n7-Sair.");
             
             switch (opcao) {
@@ -45,12 +46,18 @@ public class Main {
                         Data dtVencimento = new Data(diaVencimento, mesVencimento, anoVencimento);
                         conta = new ContaInvestimento(cliente, saldo, dtVencimento);
                     }
+
+                    System.out.println("Conta criada com sucesso! Precione ENTER para voltar ao menu principal.");
+                    Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                     break;
                 
                 //realizando deposito
                 case 2:
                     //if para verificar se a conta ja foi criada
                     if (conta == null) {
+                        System.out.println("Crie uma conta primeiro.");
+                        System.out.println("Precione ENTER para voltar ao menu principal.");
+                        Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                         break;
                     }
 
@@ -61,17 +68,24 @@ public class Main {
 
                     Operacao opDep = new Operacao('D', valorDep);//criando o objeto da operação depósito
                     conta.movimenta(opDep);
+                    System.out.println("Precione ENTER para voltar ao menu principal.");
+                    Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                     break;
 
                 //realizando saque
                 case 3:
                     //if para verificar se a conta ja foi criada
                     if (conta == null) {
+                        System.out.println("Crie uma conta primeiro.");
+                        System.out.println("Precione ENTER para voltar ao menu principal.");
+                        Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                         break;
                     }
 
                     if (conta instanceof ContaInvestimento) {
                         System.out.println("Operação indisponível para a conta Investimento !");
+                        System.out.println("Precione ENTER para voltar ao menu principal.");
+                        Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                         break;
                     }
 
@@ -82,13 +96,27 @@ public class Main {
 
                     Operacao opSaq = new Operacao('S', valorSaq);
                     conta.movimenta(opSaq);
+
+                    System.out.println("Precione ENTER para voltar ao menu principal.");
+                    Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                     break;
 
                 //*CONTINUAR CASE 4 (JUROS) *//
                 
                 //mostrando o extrato da conta
-                case 5: 
+                case 5:
+                    //if para verificar se a conta ja foi criada
+                    if (conta == null) {
+                        System.out.println("Crie uma conta primeiro.");
+                        System.out.println("Precione ENTER para voltar ao menu principal.");
+                        Teclado.leString(); //Recebe o clique no enter e retorna ao menu
+                        break;
+                    } 
+
                     conta.extrato();
+                    System.out.println();
+                    System.out.println("Precione ENTER para voltar ao menu principal.");
+                    Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                     break;
             }
         } while (opcao != 7);

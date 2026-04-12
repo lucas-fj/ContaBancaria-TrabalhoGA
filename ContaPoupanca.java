@@ -27,7 +27,7 @@ public class ContaPoupanca extends ContaBancaria{
          if (op.getTipo() == 'D') { //depósito 
             saldo += op.getValor();
             depositos.registrarMovimentacao(op.getValor());
-            System.out.println("Novo saldo: R$" + saldo);
+            System.out.printf("Depósito realizado! Novo saldo: R$ %.2f\n", saldo);
             
         } else if (op.getTipo() == 'S') {//saque
 

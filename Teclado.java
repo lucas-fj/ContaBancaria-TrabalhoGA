@@ -16,17 +16,17 @@ public class Teclado {
      * @return int
      */
     public static int leInt() {
-        int a = 0;
+    while (true) {
         try {
             s = d.readLine();
-            a = Integer.parseInt(s);
+            return Integer.parseInt(s);
         } catch (IOException e) {
             System.out.println("Erro de I/O: " + e);
         } catch (NumberFormatException e) {
-            System.out.println("O valor digitado deve ser inteiro: " + e);
+            System.out.println("Erro: digite um número inteiro válido!");
         }
-        return a;
     }
+}
 
     /**
      * Lê um inteiro, com mensagem.
@@ -34,7 +34,7 @@ public class Teclado {
      * @return int
      */
     public static int leInt(String msg) {
-        System.out.println(msg);
+        System.out.print(msg);
         return leInt();
     }
 
@@ -44,17 +44,17 @@ public class Teclado {
      * @return double
      */
     public static double leDouble() {
-        double a = 0;
+    while (true) {
         try {
             s = d.readLine();
-            a = Double.parseDouble(s);
+            return Double.parseDouble(s);
         } catch (IOException e) {
             System.out.println("Erro de I/O: " + e);
         } catch (NumberFormatException e) {
-            System.out.println("O valor digitado deve ser número: " + e);
+            System.out.println("Erro: digite um número válido!");
         }
-        return a;
     }
+}
 
     /**
      * Lê um double, com mensagem.
@@ -62,7 +62,7 @@ public class Teclado {
      * @return double
      */
     public static double leDouble(String msg) {
-        System.out.println(msg);
+        System.out.print(msg);
         return leDouble();
     }
 
@@ -87,21 +87,22 @@ public class Teclado {
      * @return String
      */
     public static String leString(String msg) {
-        System.out.println(msg);
+        System.out.print(msg);
         return leString();
     }
-
     public static char leChar() {
-        char a = ' ';
-        try {
-            s = d.readLine();
-            a = s.charAt(0);
-        } catch (IOException e) {
-            System.out.println("Erro de I/O: " + e);
-        } catch (NumberFormatException e) {
-            System.out.println("o valor digitado deve ser char: " + e);
+        while (true) {
+            try {
+                s = d.readLine();
+                if (s != null && s.length() > 0) {
+                    return s.charAt(0);
+                } else {
+                    System.out.println("Erro: digite um caractere válido!");
+                }
+            } catch (IOException e) {
+                System.out.println("Erro de I/O: " + e);
+            }
         }
-        return a;
     }
 
     /**
@@ -110,7 +111,7 @@ public class Teclado {
      * @return char
      */
     public static char leChar(String msg) {
-        System.out.println(msg);
+        System.out.print(msg);
         return leChar();
     }
 }
