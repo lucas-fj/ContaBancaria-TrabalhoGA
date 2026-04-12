@@ -65,8 +65,7 @@ public class ContaPoupanca extends ContaBancaria{
             saldo -= op.getValor();
 
             // registrar saque
-            saques.setQuantidade(saques.getQuantidade() + 1);
-            saques.setValorTotal(saques.getValorTotal() + op.getValor());
+            saques.registrarMovimentacao(op.getValor());
 
             System.out.printf("Saque realizado! Novo saldo: R$ %.2f\n", saldo);
         }
