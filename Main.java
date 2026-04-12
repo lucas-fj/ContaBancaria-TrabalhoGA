@@ -101,7 +101,65 @@ public class Main {
                     Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                     break;
 
-                //*CONTINUAR CASE 4 (JUROS) *//
+                case 4: 
+                // Verifica se a conta já foi criada.
+                 if (conta == null) {
+                        System.out.println("A conta não foi criada!!");
+                        System.out.println("Precione ENTER para voltar ao menu principal.");
+                        Teclado.leString();
+                        break;
+                    }
+                    // Verifica se o Objeto conta é uma instância da classe conta Corrente e retorna um valor booleano, seja ele true ou false.
+                    else if(conta instanceof ContaCorrente){
+                        System.out.println("Não é possível aplicar juros em uma conta corrente ");
+                        System.out.println("Precione ENTER para voltar ao menu principal.");
+                        Teclado.leString(); //Recebe o clique no enter e retorna ao menu
+                        break;
+                    } 
+
+                    // Verifica se a se o Objeto conta é uma instância da classe conta Investimento.
+                    else if(conta instanceof ContaInvestimento){
+                        System.out.println("Informe o percentual de juros à ser aplicado na conta investimento: ");
+                        //Recebe o valor do juros.
+                        double jurosI = Teclado.leDouble();
+                        //Verifica se o valor é positivo e maior que zero;
+                    if (jurosI < 0 || jurosI == 0) {
+                            System.out.println("Não é possível aplicar este valor em percentual!!!");
+                            System.out.println("Precione ENTER para voltar ao menu principal.");
+                            Teclado.leString(); //Recebe o clique no enter e retorna ao menu
+                            break;
+                    }
+                        // Se a variável juros for afirmativa, instância um objeto da classe operação com atibutos 'Tipo' e 'Valor;'
+                        else {
+                        Operacao j = new Operacao('J', jurosI);
+                        //Chama o método movimenta da conta Invetimento;
+                        conta.movimenta(j);
+                        //imprime o saldo
+                        System.out.println("Saldo atual: " + conta.getSaldoInicial());
+                        System.out.println("Precione ENTER para voltar ao menu principal.");
+                        Teclado.leString(); //Recebe o clique no enter e retorna ao menu
+                        }
+                    }
+                        // Verifica se a se o Objeto conta é uma instância da classe conta Poupança.
+                        if (conta instanceof ContaPoupanca) {
+                            System.out.println("Informe o percentual de juros a ser aplicado na conta poupança: ");
+                            double jurosP = Teclado.leDouble();
+                        if (jurosP < 0 || jurosP == 0) {
+                            System.out.println("Não é possível aplicar este valor em percentual!!!");
+                            System.out.println("Precione ENTER para voltar ao menu principal.");
+                            Teclado.leString(); //Recebe o clique no enter e retorna ao menu
+                            break;
+                    }
+                        // Se a variável juros for afirmativa, instância um objeto da classe operação com atibutos 'Tipo' e 'Valor;'
+                        Operacao j = new Operacao('J', jurosP);
+                        //Chama o método movimenta da conta Invetimento;
+                        conta.movimenta(j);
+                        //imprime o saldo atual
+                        System.out.println("Saldo atual: " + conta.getSaldoInicial());
+                        System.out.println("Precione ENTER para voltar ao menu principal.");
+                        Teclado.leString(); //Recebe o clique no enter e retorna ao menu
+                         
+                    }
                 
                 //mostrando o extrato da conta
                 case 5:
