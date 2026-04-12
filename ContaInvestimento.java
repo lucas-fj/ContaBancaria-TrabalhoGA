@@ -67,5 +67,15 @@ public class ContaInvestimento extends ContaBancaria {
 
             System.out.printf("Saque realizado! Novo saldo: R$ %.2f\n", saldo);
         }
+         // Pega o atributo tipo do objeto operação e verifica se 'J'.
+         if(op.getTipo() == 'J'){
+            //Se afirmativo para 'J', declara uma varável temporária, pega o atributo valor do objeto Operação e transforma em percentual.
+            double juros = getSaldoInicial() * (op.getValor() / 100);
+            //Atualiza o valor do juros.
+            op.setValor(juros);
+            //Atualiza o valor do saldo.
+            setSaldoInicial(getSaldoInicial() + op.getValor());
+
+        }
     }
 }
