@@ -69,5 +69,11 @@ public class ContaPoupanca extends ContaBancaria{
 
             System.out.printf("Saque realizado! Novo saldo: R$ %.2f\n", saldo);
         }
+         if(op.getTipo() == 'J'){
+            double juros = getSaldoInicial() * (op.getValor() / 100);
+            op.setValor(juros);
+            setSaldoInicial(getSaldoInicial() + op.getValor());
+
+        }
     }
 }
