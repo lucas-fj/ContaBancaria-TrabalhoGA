@@ -10,6 +10,8 @@ public  abstract class ContaBancaria {
     Movimentacao depositos;
     Movimentacao saques;
     Movimentacao juros;
+     double saldoMin;
+    double saldoMax;
 
     //getters e setters
     public Cliente getCliente() {
@@ -42,20 +44,22 @@ public  abstract class ContaBancaria {
     public void setJuros(Movimentacao juros) {
         this.juros = juros;
     }
-
+   
     //construtor 
     public ContaBancaria(Cliente cliente, double saldoInicial) {
         this.cliente = cliente;
         this.saldoInicial = saldoInicial;
         this.saldo = saldoInicial;
+        this.saldoMin = saldoInicial;
+        this.saldoMax = saldoInicial;
 
         this.depositos = new Movimentacao(0, 0);
         this.saques = new Movimentacao(0, 0);
         this.juros = new Movimentacao(0, 0);
     }
     //métodos
-    public abstract void movimenta(Operacao op);    
-
+    public abstract void movimenta(Operacao op);  
+   
     //método para mostrar extrato
     public void extrato(){
         //dados cliente e conta
@@ -70,6 +74,7 @@ public  abstract class ContaBancaria {
         System.out.println("Depósitos: " + depositos.getQuantidade() + " || " + "Total: R$" + depositos.getValorTotal());
         System.out.println("Saques: " + saques.getQuantidade() + " || " + "Total: R$" + saques.getValorTotal());
         System.out.println("Juros: " + juros.getQuantidade() + " || " + "Total: R$" + juros.getValorTotal());
+        System.out.println("Saldo minimo: R$" + saldoMin);
+        System.out.println("Saldo máximo: R$" + saldoMax);
     }
-    
 }

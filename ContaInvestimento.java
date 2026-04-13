@@ -25,6 +25,10 @@ public class ContaInvestimento extends ContaBancaria {
         if (op.getTipo() == 'D') { //depósito
             saldo += op.getValor();
             depositos.registrarMovimentacao(op.getValor());
+
+            if (saldo > saldoMax) {
+                saldoMax = saldo;
+            }
             System.out.printf("Depósito realizado! Novo saldo: R$ %.2f\n", saldo);
 
         }   else if(op.getTipo() == 'J'){ //juros
@@ -32,7 +36,11 @@ public class ContaInvestimento extends ContaBancaria {
             op.setValor(juros2);
             setSaldoInicial(getSaldoInicial() + op.getValor());
             juros.registrarMovimentacao(op.getValor());
-            System.out.printf("Juros aplicado com sucesso! Novo saldo: R$%.2f\n", saldo);
+
+            if (saldo > saldoMax) {
+                saldoMax = saldo;
+            }
+            System.out.printf("Juros aplicado! Novo saldo: R$%.2f\n", saldo);
         }
     }
 }

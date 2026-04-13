@@ -116,11 +116,8 @@ public class Main {
                         System.out.println("Precione ENTER para voltar ao menu principal.");
                         Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                         break;
-                    } 
-
-                    // Verifica se a se o Objeto conta é uma instância da classe conta Investimento.
-                    else if(conta instanceof ContaInvestimento){
-                        System.out.println("Informe o percentual de juros à ser aplicado na conta investimento: ");
+                    } else { 
+                        System.out.println("Informe o percentual de juros à ser aplicado na conta: ");
                         //Recebe o valor do juros.
                         double jurosI = Teclado.leDouble();
                         //Verifica se o valor é positivo e maior que zero;
@@ -141,27 +138,7 @@ public class Main {
                         Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                         }
                     }
-                        // Verifica se a se o Objeto conta é uma instância da classe conta Poupança.
-                        if (conta instanceof ContaPoupanca) {
-                            System.out.println("Informe o percentual de juros a ser aplicado na conta poupança: ");
-                            double jurosP = Teclado.leDouble();
-                        if (jurosP < 0 || jurosP == 0) {
-                            System.out.println("Não é possível aplicar este valor em percentual!!!");
-                            System.out.println("Precione ENTER para voltar ao menu principal.");
-                            Teclado.leString(); //Recebe o clique no enter e retorna ao menu
-                            break;
-                    }
-                        // Se a variável juros for afirmativa, instância um objeto da classe operação com atibutos 'Tipo' e 'Valor;'
-                        Operacao opJuros = new Operacao('J', jurosP);
-                        //Chama o método movimenta da conta Invetimento;
-                        conta.movimenta(opJuros);
-                        //imprime o saldo atual
-                        System.out.println("Saldo atual: " + conta.getSaldoInicial());
-                        System.out.println("Precione ENTER para voltar ao menu principal.");
-                        Teclado.leString(); //Recebe o clique no enter e retorna ao menu
-                         
-                    }
-                
+
                 //mostrando o extrato da conta
                 case 5:
                     //if para verificar se a conta ja foi criada
@@ -191,5 +168,7 @@ public class Main {
     public static void mostrarNomes(){
         System.out.println("Lucas Furquim Jardim");
         System.out.println("João Pedro Ourique Severo");
+        System.out.println("Paula Hoffmann");
+        System.out.println("Yasmim Macari Kuhn");
     }
 }

@@ -30,6 +30,10 @@ public class ContaCorrente extends ContaBancaria {
         depositos.setValorTotal(depositos.getValorTotal() + op.getValor());
 
         System.out.printf("Depósito realizado! Novo saldo: R$ %.2f\n", saldo);
+
+        if (saldo > saldoMax) {
+            saldoMax = saldo;
+        }
         
     } else if (op.getTipo() == 'S') {//saque
 
@@ -68,6 +72,10 @@ public class ContaCorrente extends ContaBancaria {
 
         // registrar saque
         saques.registrarMovimentacao(op.getValor());
+        
+        if (saldo < saldoMin) {
+            saldoMin = saldo;
+        }
 
         System.out.printf("Saque realizado! Novo saldo: R$ %.2f\n", saldo);
         }
