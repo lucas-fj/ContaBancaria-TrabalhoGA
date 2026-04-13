@@ -27,55 +27,12 @@ public class ContaInvestimento extends ContaBancaria {
             depositos.registrarMovimentacao(op.getValor());
             System.out.printf("Depósito realizado! Novo saldo: R$ %.2f\n", saldo);
 
-        } else if (op.getTipo() == 'S') {//saque
-
-        // verificar saldo
-        if (op.getValor() > saldo) {
-            System.out.println("Saldo insuficiente!");
-            return;
-        }
-
-        int[] notas = {100, 50, 20, 10, 5, 2};
-        int[] qtdNotas = new int[notas.length];
-
-        double restante = op.getValor();
-
-        for (int i = 0; i < notas.length; i++) {
-            qtdNotas[i] = (int) (restante / notas[i]);
-            restante = restante % notas[i];
-        }
-
-        // não consegue formar valor
-        if (restante != 0) {
-            System.out.println("Não é possível sacar esse valor com as notas disponíveis.");
-            return;
-        }
-
-        // mostrar notas
-        System.out.println("\nNotas entregues:");
-        for (int i = 0; i < notas.length; i++) {
-            if (qtdNotas[i] > 0) {
-                System.out.println(qtdNotas[i] + " nota(s) de R$" + notas[i]);
-            }
-        }
-
-            // atualizar saldo
-            saldo -= op.getValor();
-
-            // registrar saque
-            saques.registrarMovimentacao(op.getValor());
-
-            System.out.printf("Saque realizado! Novo saldo: R$ %.2f\n", saldo);
-        }
-         // Pega o atributo tipo do objeto operação e verifica se 'J'.
-         if(op.getTipo() == 'J'){
-            //Se afirmativo para 'J', declara uma varável temporária, pega o atributo valor do objeto Operação e transforma em percentual.
-            double juros = getSaldoInicial() * (op.getValor() / 100);
-            //Atualiza o valor do juros.
-            op.setValor(juros);
-            //Atualiza o valor do saldo.
+        }   else if(op.getTipo() == 'J'){ //juros
+            double juros2 = getSaldoInicial() * (op.getValor() / 100);
+            op.setValor(juros2);
             setSaldoInicial(getSaldoInicial() + op.getValor());
-
+            juros.registrarMovimentacao(op.getValor());
+            System.out.printf("Juros aplicado com sucesso! Novo saldo: R$%.2f\n", saldo);
         }
     }
 }

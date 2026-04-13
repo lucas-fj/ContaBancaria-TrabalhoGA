@@ -68,12 +68,12 @@ public class ContaPoupanca extends ContaBancaria{
             saques.registrarMovimentacao(op.getValor());
 
             System.out.printf("Saque realizado! Novo saldo: R$ %.2f\n", saldo);
-        }
-         if(op.getTipo() == 'J'){
-            double juros = getSaldoInicial() * (op.getValor() / 100);
-            op.setValor(juros);
-            setSaldoInicial(getSaldoInicial() + op.getValor());
 
+        } else if(op.getTipo() == 'J'){ //juros
+            double juros2 = getSaldoInicial() * (op.getValor() / 100);
+            op.setValor(juros2);
+            setSaldoInicial(getSaldoInicial() + op.getValor());
+            juros.registrarMovimentacao(op.getValor());
         }
     }
 }

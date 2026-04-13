@@ -29,8 +29,8 @@ public class Main {
                     Cliente cliente = new Cliente(nome, cpf, new Data(dia, mes, ano));
 
                     //recebendo saldo inicial e tipo de conta
-                    double saldo = Teclado.leDouble("Informe o saldo inicial: ");
                     char tipo = Teclado.leChar("Escolha o tipo de conta, Corrente(C), Poupança(P) ou Investimento(I): ");
+                    double saldo = Teclado.leDouble("Informe o saldo inicial: ");
 
                     if (tipo == 'C' || tipo == 'c') {
                         double limite = Teclado.leDouble("Informe o limite:");
@@ -100,7 +100,8 @@ public class Main {
                     System.out.println("Precione ENTER para voltar ao menu principal.");
                     Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                     break;
-
+                
+                //aplicando juros
                 case 4: 
                 // Verifica se a conta já foi criada.
                  if (conta == null) {
@@ -151,9 +152,9 @@ public class Main {
                             break;
                     }
                         // Se a variável juros for afirmativa, instância um objeto da classe operação com atibutos 'Tipo' e 'Valor;'
-                        Operacao j = new Operacao('J', jurosP);
+                        Operacao opJuros = new Operacao('J', jurosP);
                         //Chama o método movimenta da conta Invetimento;
-                        conta.movimenta(j);
+                        conta.movimenta(opJuros);
                         //imprime o saldo atual
                         System.out.println("Saldo atual: " + conta.getSaldoInicial());
                         System.out.println("Precione ENTER para voltar ao menu principal.");
@@ -176,7 +177,19 @@ public class Main {
                     System.out.println("Precione ENTER para voltar ao menu principal.");
                     Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                     break;
+                
+                //nomes dos integrantes
+                case 6:
+                    mostrarNomes();
+                    System.out.println("Precione ENTER para voltar ao menu principal.");
+                    Teclado.leString(); //Recebe o clique no enter e retorna ao menu
+                    break;
             }
         } while (opcao != 7);
+    }
+
+    public static void mostrarNomes(){
+        System.out.println("Lucas Furquim Jardim");
+        System.out.println("João Pedro Ourique Severo");
     }
 }

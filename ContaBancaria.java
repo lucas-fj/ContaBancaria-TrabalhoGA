@@ -68,7 +68,8 @@ public  abstract class ContaBancaria {
 
         //movimentações
         System.out.println("Depósitos: " + depositos.getQuantidade() + " || " + "Total: R$" + depositos.getValorTotal());
-        System.out.println("Saques " + saques.getQuantidade() + " || " + "Total: R$" + saques.getValorTotal());
+        System.out.println("Saques: " + saques.getQuantidade() + " || " + "Total: R$" + saques.getValorTotal());
+        System.out.println("Juros: " + juros.getQuantidade() + " || " + "Total: R$" + juros.getValorTotal());
     }
     
 }

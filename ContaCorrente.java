@@ -70,7 +70,7 @@ public class ContaCorrente extends ContaBancaria {
         saques.registrarMovimentacao(op.getValor());
 
         System.out.printf("Saque realizado! Novo saldo: R$ %.2f\n", saldo);
-    }
-
         }
+
     }
+}
