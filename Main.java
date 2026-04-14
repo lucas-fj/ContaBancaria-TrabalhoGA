@@ -18,12 +18,42 @@ public class Main {
                     }
 
                     //recebendo dados do cliente
-                    String nome = Teclado.leString("Nome: "); 
+                    String nome = Teclado.leString("Nome completo: "); 
                     String cpf = Teclado.leString("CPF: ");
                     System.out.println("Digite sua data de nascimento.");
                     int dia = Teclado.leInt("Dia: ");
+                    while (true) {
+                        if (dia >= 1 && dia <= 31 ) {
+                            break;
+                        }
+                        else {
+                            System.out.println("Dia Inválido");
+                            dia = Teclado.leInt();
+                        }
+                    
+                    }
+                    
                     int mes = Teclado.leInt("Mês: ");
+                    while (true) {
+                        if (mes < 1 && mes <12) {
+                            System.out.println("Mês Inexistente");
+                            mes = Teclado.leInt();
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                    
                     int ano = Teclado.leInt("Ano: ");
+                    while (true) {
+                        if (ano < 2026 && ano > 1909) {
+                            break;
+                        }
+                        else{
+                            System.out.println("Ano Inválido");
+                            ano = Teclado.leInt();
+                        }
+                    }
 
                     //criando o objeto cliente e objeto data
                     Cliente cliente = new Cliente(nome, cpf, new Data(dia, mes, ano));
