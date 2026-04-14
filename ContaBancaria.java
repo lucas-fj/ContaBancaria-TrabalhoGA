@@ -20,6 +20,12 @@ public  abstract class ContaBancaria {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+    public double getSaldo() {
+        return saldo;
+    }
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
     public double getSaldoInicial() {
         return saldoInicial;
     }
