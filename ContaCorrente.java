@@ -27,8 +27,6 @@ public class ContaCorrente extends ContaBancaria {
         saldo += op.getValor();
 
         // registra depósito
-        depositos.setQuantidade(depositos.getQuantidade() + 1);
-        depositos.setValorTotal(depositos.getValorTotal() + op.getValor());
         depositos.registrarMovimentacao(op.getValor());
 
         System.out.printf("Depósito realizado! Novo saldo: R$ %.2f\n", saldo);
@@ -40,7 +38,7 @@ public class ContaCorrente extends ContaBancaria {
     } else if (op.getTipo() == 'S') {//saque
 
         // verificar saldo
-        if (op.getValor() > saldo || op.getValor() > limiteCredito) {
+        if (op.getValor() >  (saldo + limiteCredito)) {
             System.out.println("Saldo insuficiente!");
             return;
         }
