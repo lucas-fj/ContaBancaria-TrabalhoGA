@@ -126,8 +126,7 @@ public class Main {
                             System.out.println("Precione ENTER para voltar ao menu principal.");
                             Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                             break;
-                    }
-                        // Se a variável juros for afirmativa, instância um objeto da classe operação com atibutos 'Tipo' e 'Valor;'
+                    } // Se a variável juros for afirmativa, instância um objeto da classe operação com atibutos 'Tipo' e 'Valor;'
                         else {
                         Operacao j = new Operacao('J', jurosI);
                         //Chama o método movimenta da conta Invetimento;

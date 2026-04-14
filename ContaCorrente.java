@@ -21,6 +21,7 @@ public class ContaCorrente extends ContaBancaria {
     }
 
     //método movimenta (faz apenas as operações de depósito e saque verificando se o saldo está disponível e o limite ok)
+    @Override
     public void movimenta(Operacao op){
         if (op.getTipo() == 'D') { //depósito  
         saldo += op.getValor();

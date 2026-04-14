@@ -23,6 +23,7 @@ public class ContaPoupanca extends ContaBancaria{
     }
 
     //métodos
+    @Override
     public void movimenta(Operacao op){
          if (op.getTipo() == 'D') { //depósito 
             saldo += op.getValor();
