@@ -42,21 +42,21 @@ public class Data {
     }
 
     //métodos para coferir se as datas são válidas 
-    public static void conferirDia(int dia){
+    public static int conferirDia(int dia){
         while (true) {
             if (dia >= 1 && dia <= 31 ) {
-                break;
+                return dia;
             } else {
-                System.out.println("Dia inválido! DIgite novamente: ");
+                System.out.println("Dia inválido! Digite novamente: ");
                 dia = Teclado.leInt();
             }
          }
     }
 
-    public static void conferirMes(int mes){
+    public static int conferirMes(int mes){
         while (true) {
             if (mes >= 1 && mes <= 12) {
-                break;
+                return mes;
             } else {
                 System.out.println("Mês inválido! Digite novamente: ");
                 mes = Teclado.leInt();
@@ -64,10 +64,10 @@ public class Data {
         }
     }
 
-    public static void conferirAno(int ano){
+    public static int conferirAno(int ano){
         while (true) {
             if (ano <= 2026 && ano >= 1909) {
-                break;
+                return ano;
             } else {
                 System.out.println("Ano inválido! Digite novamente: ");
                 ano = Teclado.leInt();

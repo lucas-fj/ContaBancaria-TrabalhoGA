@@ -33,6 +33,4 @@ public class Cliente {
         this.cpf = cpf;
         this.dtNascimento = dtNascimento;
     }
-
-    
 }

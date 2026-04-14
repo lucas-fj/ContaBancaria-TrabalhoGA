@@ -22,13 +22,13 @@ public class Main {
                     String cpf = Teclado.leString("CPF: ");
                     System.out.println("Digite sua data de nascimento.");
                     int dia = Teclado.leInt("Dia: ");
-                    Data.conferirDia(dia);
+                    dia = Data.conferirDia(dia);
                     
                     int mes = Teclado.leInt("Mês: ");
-                    Data.conferirMes(mes);
+                    mes = Data.conferirMes(mes);
                     
                     int ano = Teclado.leInt("Ano: ");
-                    Data.conferirAno(ano);
+                    ano = Data.conferirAno(ano);
 
                     //criando o objeto cliente e objeto data
                     Cliente cliente = new Cliente(nome, cpf, new Data(dia, mes, ano));
@@ -42,15 +42,15 @@ public class Main {
                         conta = new ContaCorrente(cliente, saldo, limite);
                     } else if (tipo == 'P' || tipo == 'p') {
                         int diaAniversario = Teclado.leInt("Informe o dia aniversário: ");
-                        Data.conferirDia(diaAniversario);
+                        diaAniversario = Data.conferirDia(diaAniversario);
                         conta = new ContaPoupanca(cliente, saldo, diaAniversario);
                     } else if (tipo == 'I' || tipo == 'i') {
                         System.out.println("Data de vencimento: ");
                         int diaVencimento = Teclado.leInt("Dia: ");
-                        Data.conferirDia(diaVencimento);
+                        diaVencimento = Data.conferirDia(diaVencimento);
 
                         int mesVencimento = Teclado.leInt("Mês: ");
-                        Data.conferirMes(mesVencimento);
+                        mesVencimento = Data.conferirMes(mesVencimento);
 
                         int anoVencimento = Teclado.leInt("Ano: ");
                         while (true) {
@@ -63,9 +63,14 @@ public class Main {
                         }
                         Data dtVencimento = new Data(diaVencimento, mesVencimento, anoVencimento);
                         conta = new ContaInvestimento(cliente, saldo, dtVencimento);
+                    } else {
+                        System.out.println("Tipo de conta inválido!");
+                        System.out.println("Pressione ENTER para voltar ao menu principal.");
+                        Teclado.leString();
+                        break;
                     }
 
-                    System.out.println("Conta criada com sucesso! Precione ENTER para voltar ao menu principal.");
+                    System.out.println("Conta criada com sucesso! Pressione ENTER para voltar ao menu principal.");
                     Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                     break;
                 
@@ -74,7 +79,7 @@ public class Main {
                     //if para verificar se a conta ja foi criada
                     if (conta == null) {
                         System.out.println("Crie uma conta primeiro.");
-                        System.out.println("Precione ENTER para voltar ao menu principal.");
+                        System.out.println("Pressione ENTER para voltar ao menu principal.");
                         Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                         break;
                     }
@@ -86,7 +91,7 @@ public class Main {
 
                     Operacao opDep = new Operacao('D', valorDep);//criando o objeto da operação depósito
                     conta.movimenta(opDep);
-                    System.out.println("Precione ENTER para voltar ao menu principal.");
+                    System.out.println("Pressione ENTER para voltar ao menu principal.");
                     Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                     break;
 
@@ -95,14 +100,14 @@ public class Main {
                     //if para verificar se a conta ja foi criada
                     if (conta == null) {
                         System.out.println("Crie uma conta primeiro.");
-                        System.out.println("Precione ENTER para voltar ao menu principal.");
+                        System.out.println("Pressione ENTER para voltar ao menu principal.");
                         Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                         break;
                     }
 
                     if (conta instanceof ContaInvestimento) {
                         System.out.println("Operação indisponível para a conta Investimento !");
-                        System.out.println("Precione ENTER para voltar ao menu principal.");
+                        System.out.println("Pressione ENTER para voltar ao menu principal.");
                         Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                         break;
                     }
@@ -115,7 +120,7 @@ public class Main {
                     Operacao opSaq = new Operacao('S', valorSaq);
                     conta.movimenta(opSaq);
 
-                    System.out.println("Precione ENTER para voltar ao menu principal.");
+                    System.out.println("Pressione ENTER para voltar ao menu principal.");
                     Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                     break;
                 
@@ -124,14 +129,14 @@ public class Main {
                 // Verifica se a conta já foi criada.
                  if (conta == null) {
                         System.out.println("A conta não foi criada!!");
-                        System.out.println("Precione ENTER para voltar ao menu principal.");
+                        System.out.println("Pressione ENTER para voltar ao menu principal.");
                         Teclado.leString();
                         break;
                     }
                     // Verifica se o Objeto conta é uma instância da classe conta Corrente e retorna um valor booleano, seja ele true ou false.
                     else if(conta instanceof ContaCorrente){
                         System.out.println("Não é possível aplicar juros em uma conta corrente ");
-                        System.out.println("Precione ENTER para voltar ao menu principal.");
+                        System.out.println("Pressione ENTER para voltar ao menu principal.");
                         Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                         break;
                     } else { 
@@ -141,7 +146,7 @@ public class Main {
                         //Verifica se o valor é positivo e maior que zero;
                     if (jurosI <= 0) {
                             System.out.println("Não é possível aplicar este valor em percentual!!!");
-                            System.out.println("Precione ENTER para voltar ao menu principal.");
+                            System.out.println("Pressione ENTER para voltar ao menu principal.");
                             Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                             break;
                     } // Se a variável juros for afirmativa, instância um objeto da classe operação com atibutos 'Tipo' e 'Valor;'
@@ -149,7 +154,7 @@ public class Main {
                         Operacao j = new Operacao('J', jurosI);
                         //Chama o método movimenta da conta Invetimento;
                         conta.movimenta(j);
-                        System.out.println("Precione ENTER para voltar ao menu principal.");
+                        System.out.println("Pressione ENTER para voltar ao menu principal.");
                         Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                         }
                     }
@@ -160,21 +165,21 @@ public class Main {
                     //if para verificar se a conta ja foi criada
                     if (conta == null) {
                         System.out.println("Crie uma conta primeiro.");
-                        System.out.println("Precione ENTER para voltar ao menu principal.");
+                        System.out.println("Pressione ENTER para voltar ao menu principal.");
                         Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                         break;
                     } 
 
                     conta.extrato();
                     System.out.println();
-                    System.out.println("Precione ENTER para voltar ao menu principal.");
+                    System.out.println("Pressione ENTER para voltar ao menu principal.");
                     Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                     break;
                 
                 //nomes dos integrantes
                 case 6:
                     mostrarNomes();
-                    System.out.println("Precione ENTER para voltar ao menu principal.");
+                    System.out.println("Pressione ENTER para voltar ao menu principal.");
                     Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                     break;
             }

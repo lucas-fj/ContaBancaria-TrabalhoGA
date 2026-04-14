@@ -29,6 +29,7 @@ public class ContaCorrente extends ContaBancaria {
         // registra depósito
         depositos.setQuantidade(depositos.getQuantidade() + 1);
         depositos.setValorTotal(depositos.getValorTotal() + op.getValor());
+        depositos.registrarMovimentacao(op.getValor());
 
         System.out.printf("Depósito realizado! Novo saldo: R$ %.2f\n", saldo);
 

@@ -26,8 +26,4 @@ public class Operacao {
         this.tipo = tipo;
         this.valor = valor; 
     }
-    
-
-    //*FAZER MAIS MÉTODOS CASO SEJA NECESSÁRIO */
-    
 }
