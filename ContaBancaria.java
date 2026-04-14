@@ -10,7 +10,7 @@ public  abstract class ContaBancaria {
     Movimentacao depositos;
     Movimentacao saques;
     Movimentacao juros;
-     double saldoMin;
+    double saldoMin;
     double saldoMax;
 
     //getters e setters
