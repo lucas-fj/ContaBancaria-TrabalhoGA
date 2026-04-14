@@ -35,7 +35,7 @@ public class Main {
                     
                     int mes = Teclado.leInt("Mês: ");
                     while (true) {
-                        if (mes < 1 && mes <12) {
+                        if (mes < 1 || mes > 12) {
                             System.out.println("Mês Inexistente");
                             mes = Teclado.leInt();
                         }
@@ -151,7 +151,7 @@ public class Main {
                         //Recebe o valor do juros.
                         double jurosI = Teclado.leDouble();
                         //Verifica se o valor é positivo e maior que zero;
-                    if (jurosI < 0 || jurosI == 0) {
+                    if (jurosI <= 0) {
                             System.out.println("Não é possível aplicar este valor em percentual!!!");
                             System.out.println("Precione ENTER para voltar ao menu principal.");
                             Teclado.leString(); //Recebe o clique no enter e retorna ao menu
