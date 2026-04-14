@@ -40,4 +40,38 @@ public class Data {
     public String toString() {
         return dia + "/" + mes + "/" + ano;
     }
+
+    //métodos para coferir se as datas são válidas 
+    public static void conferirDia(int dia){
+        while (true) {
+            if (dia >= 1 && dia <= 31 ) {
+                break;
+            } else {
+                System.out.println("Dia inválido! DIgite novamente: ");
+                dia = Teclado.leInt();
+            }
+         }
+    }
+
+    public static void conferirMes(int mes){
+        while (true) {
+            if (mes >= 1 && mes <= 12) {
+                break;
+            } else {
+                System.out.println("Mês inválido! Digite novamente: ");
+                mes = Teclado.leInt();
+            }
+        }
+    }
+
+    public static void conferirAno(int ano){
+        while (true) {
+            if (ano <= 2026 && ano >= 1909) {
+                break;
+            } else {
+                System.out.println("Ano inválido! Digite novamente: ");
+                ano = Teclado.leInt();
+            }
+        }
+    }
 }

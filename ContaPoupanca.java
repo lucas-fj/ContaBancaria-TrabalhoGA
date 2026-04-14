@@ -79,9 +79,9 @@ public class ContaPoupanca extends ContaBancaria{
             }
 
         } else if(op.getTipo() == 'J'){ //juros
-            double juros2 = getSaldoInicial() * (op.getValor() / 100);
+            double juros2 = getSaldo() * (op.getValor() / 100);
             op.setValor(juros2);
-            setSaldo(getSaldoInicial() + op.getValor());
+            setSaldo(getSaldo() + op.getValor());
             juros.registrarMovimentacao(op.getValor());
 
             if (saldo > saldoMax) {

@@ -22,38 +22,13 @@ public class Main {
                     String cpf = Teclado.leString("CPF: ");
                     System.out.println("Digite sua data de nascimento.");
                     int dia = Teclado.leInt("Dia: ");
-                    while (true) {
-                        if (dia >= 1 && dia <= 31 ) {
-                            break;
-                        }
-                        else {
-                            System.out.println("Dia Inválido");
-                            dia = Teclado.leInt();
-                        }
-                    
-                    }
+                    Data.conferirDia(dia);
                     
                     int mes = Teclado.leInt("Mês: ");
-                    while (true) {
-                        if (mes < 1 || mes > 12) {
-                            System.out.println("Mês Inexistente");
-                            mes = Teclado.leInt();
-                        }
-                        else{
-                            break;
-                        }
-                    }
+                    Data.conferirMes(mes);
                     
                     int ano = Teclado.leInt("Ano: ");
-                    while (true) {
-                        if (ano < 2026 && ano > 1909) {
-                            break;
-                        }
-                        else{
-                            System.out.println("Ano Inválido");
-                            ano = Teclado.leInt();
-                        }
-                    }
+                    Data.conferirAno(ano);
 
                     //criando o objeto cliente e objeto data
                     Cliente cliente = new Cliente(nome, cpf, new Data(dia, mes, ano));
@@ -67,12 +42,25 @@ public class Main {
                         conta = new ContaCorrente(cliente, saldo, limite);
                     } else if (tipo == 'P' || tipo == 'p') {
                         int diaAniversario = Teclado.leInt("Informe o dia aniversário: ");
+                        Data.conferirDia(diaAniversario);
                         conta = new ContaPoupanca(cliente, saldo, diaAniversario);
                     } else if (tipo == 'I' || tipo == 'i') {
                         System.out.println("Data de vencimento: ");
                         int diaVencimento = Teclado.leInt("Dia: ");
+                        Data.conferirDia(diaVencimento);
+
                         int mesVencimento = Teclado.leInt("Mês: ");
+                        Data.conferirMes(mesVencimento);
+
                         int anoVencimento = Teclado.leInt("Ano: ");
+                        while (true) {
+                            if (anoVencimento >= 2026) {
+                                break;
+                            } else {
+                                System.out.println("Ano de vencimento inválido! Digite novamente:");
+                                anoVencimento = Teclado.leInt();
+                            }
+                        }
                         Data dtVencimento = new Data(diaVencimento, mesVencimento, anoVencimento);
                         conta = new ContaInvestimento(cliente, saldo, dtVencimento);
                     }
@@ -161,13 +149,12 @@ public class Main {
                         Operacao j = new Operacao('J', jurosI);
                         //Chama o método movimenta da conta Invetimento;
                         conta.movimenta(j);
-                        //imprime o saldo
-                        System.out.println("Saldo atual: " + conta.getSaldoInicial());
                         System.out.println("Precione ENTER para voltar ao menu principal.");
                         Teclado.leString(); //Recebe o clique no enter e retorna ao menu
                         }
                     }
-
+                    break;
+                    
                 //mostrando o extrato da conta
                 case 5:
                     //if para verificar se a conta ja foi criada
