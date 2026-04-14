@@ -34,7 +34,7 @@ public class ContaInvestimento extends ContaBancaria {
         }   else if(op.getTipo() == 'J'){ //juros
             double juros2 = getSaldoInicial() * (op.getValor() / 100);
             op.setValor(juros2);
-            setSaldoInicial(getSaldoInicial() + op.getValor());
+            setSaldo(getSaldoInicial() + op.getValor());
             juros.registrarMovimentacao(op.getValor());
 
             if (saldo > saldoMax) {
