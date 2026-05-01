@@ -47,13 +47,13 @@ Classe base que define:
   ## Classe Main
   Classe principal com menu interativo:
 
-  1 - Abrir conta
-  2 - Depositar
-  3 - Sacar
-  4 - Aplicar juros
-  5 - Extrato
-  6 - Integrantes
-  7 - Sair
+ - 1 - Abrir conta
+ - 2 - Depositar
+ - 3 - Sacar
+ - 4 - Aplicar juros
+ - 5 - Extrato
+ - 6 - Integrantes
+ - 7 - Sair
 
   # Como executar
   1.Compile os arquivos:
